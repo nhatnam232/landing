@@ -140,7 +140,7 @@
                                     </div>
                                 </div>
                                 <label class="switch">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" id="antiNukeToggle">
                                     <span class="slider"></span>
                                 </label>
                             </div>
@@ -154,7 +154,7 @@
                                     </div>
                                 </div>
                                 <label class="switch">
-                                    <input type="checkbox" checked>
+                                    <input type="checkbox" id="antiRaidToggle">
                                     <span class="slider"></span>
                                 </label>
                             </div>
@@ -168,12 +168,12 @@
                                     </div>
                                 </div>
                                 <label class="switch">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="antiSpamToggle">
                                     <span class="slider"></span>
                                 </label>
                             </div>
                         </div>
-                        <button class="w-full mt-8 bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-orange-500/20">
+                        <button id="saveSecurityBtn" class="w-full mt-8 bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-orange-500/20">
                             Lưu cấu hình bảo mật
                         </button>
                     </div>
@@ -187,17 +187,20 @@
                             <div class="space-y-2">
                                 <label class="text-sm text-white/50">Màu chủ đạo (Primary Color)</label>
                                 <div class="flex gap-3 p-2 glass rounded-xl">
-                                    <input type="color" value="#f97316" class="w-10 h-10 rounded-lg bg-transparent border-none cursor-pointer">
-                                    <input type="text" value="#f97316" class="bg-transparent border-none text-sm w-full outline-none">
+                                    <input type="color" id="themeColorPicker" value="#f97316" class="w-10 h-10 rounded-lg bg-transparent border-none cursor-pointer">
+                                    <input type="text" id="themeColorHex" value="#f97316" class="bg-transparent border-none text-sm w-full outline-none">
                                 </div>
                             </div>
                             <div class="space-y-2">
                                 <label class="text-sm text-white/50">Tên hiển thị Bot</label>
                                 <div class="p-3 glass rounded-xl">
-                                    <input type="text" value="Jsecurity" class="bg-transparent border-none text-sm w-full outline-none">
+                                    <input type="text" id="botNameInput" value="Jsecurity" class="bg-transparent border-none text-sm w-full outline-none">
                                 </div>
                             </div>
                         </div>
+                        <button id="saveThemeBtn" class="w-full mt-6 bg-white/10 hover:bg-white/20 py-3 rounded-xl font-bold transition-all">
+                            Cập nhật giao diện
+                        </button>
                     </div>
                 </div>
 
@@ -246,6 +249,88 @@
             duration: 0.8,
             ease: "power3.out"
         });
+
+        // --- DASHBOARD LOGIC (BỘ NÃO) ---
+        const GUILD_ID = '1237803072630165594'; // Guild ID mặc định từ app.js
+
+        // Đồng bộ Color Picker và Hex Input
+        const colorPicker = document.getElementById('themeColorPicker');
+        const colorHex = document.getElementById('themeColorHex');
+        colorPicker.addEventListener('input', (e) => colorHex.value = e.target.value);
+        colorHex.addEventListener('input', (e) => colorPicker.value = e.target.value);
+
+        // Hàm lấy cấu hình từ API
+        async function fetchConfig() {
+            try {
+                const res = await fetch(`/api/config?guildId=${GUILD_ID}`);
+                const data = await res.json();
+                
+                if (data && !data.error) {
+                    // Cập nhật UI từ Database
+                    document.getElementById('antiNukeToggle').checked = data.antiNuke?.enabled || false;
+                    document.getElementById('antiRaidToggle').checked = data.antiRaid?.enabled || false;
+                    document.getElementById('antiSpamToggle').checked = data.antiSpam?.enabled || false;
+                    
+                    if (data.theme) {
+                        colorPicker.value = data.theme.primaryColor || '#f97316';
+                        colorHex.value = data.theme.primaryColor || '#f97316';
+                        document.getElementById('botNameInput').value = data.theme.botName || 'Jsecurity';
+                    }
+                }
+            } catch (err) {
+                console.error('Lỗi khi lấy config:', err);
+            }
+        }
+
+        // Hàm lưu cấu hình
+        async function saveConfig(update) {
+            const btn = event.target;
+            const originalText = btn.innerText;
+            btn.innerText = '⌛ Đang lưu...';
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(`/api/config?guildId=${GUILD_ID}`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ update })
+                });
+                
+                if (res.ok) {
+                    btn.innerText = '✅ Đã lưu thành công!';
+                    setTimeout(() => {
+                        btn.innerText = originalText;
+                        btn.disabled = false;
+                    }, 2000);
+                }
+            } catch (err) {
+                alert('Lỗi kết nối server!');
+                btn.innerText = originalText;
+                btn.disabled = false;
+            }
+        }
+
+        // Sự kiện nút Lưu Bảo Mật
+        document.getElementById('saveSecurityBtn').addEventListener('click', () => {
+            const update = {
+                'antiNuke.enabled': document.getElementById('antiNukeToggle').checked,
+                'antiRaid.enabled': document.getElementById('antiRaidToggle').checked,
+                'antiSpam.enabled': document.getElementById('antiSpamToggle').checked
+            };
+            saveConfig(update);
+        });
+
+        // Sự kiện nút Lưu Theme
+        document.getElementById('saveThemeBtn').addEventListener('click', () => {
+            const update = {
+                'theme.primaryColor': colorHex.value,
+                'theme.botName': document.getElementById('botNameInput').value
+            };
+            saveConfig(update);
+        });
+
+        // Chạy khi trang load xong
+        window.onload = fetchConfig;
     </script>
 </body>
 </html>
