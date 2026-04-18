@@ -1,0 +1,9 @@
+{
+  "name": "blv-guard-landing",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Landing page for BLV Guard Bot",
+  "scripts": {
+    "start": "npx serve ."
+  }
+}
