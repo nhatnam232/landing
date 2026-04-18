@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jsecurity Dashboard - Quản lý Bot & Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .sidebar-item:hover, .sidebar-item.active {
+            background: linear-gradient(90deg, rgba(249, 115, 22, 0.2) 0%, transparent 100%);
+            border-left: 4px solid #f97316;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input { opacity: 0; width: 0; height: 0; }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #333;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px; width: 18px;
+            left: 3px; bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        input:checked + .slider { background-color: #f97316; }
+        input:checked + .slider:before { transform: translateX(26px); }
+    </style>
+</head>
+<body class="bg-[#050505] text-white font-sans selection:bg-orange-500/30">
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <aside class="w-64 glass border-r border-white/10 hidden md:flex flex-col fixed h-full z-50">
+            <div class="p-6 flex items-center gap-3">
+                <img src="images/logo.png" alt="Logo" class="w-10 h-10 rounded-lg">
+                <span class="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600">Jsecurity</span>
+            </div>
+            
+            <nav class="flex-1 mt-6">
+                <a href="#" class="sidebar-item active flex items-center gap-4 px-6 py-4 text-orange-500 transition-all">
+                    <span>📊</span> Tổng quan
+                </a>
+                <a href="#" class="sidebar-item flex items-center gap-4 px-6 py-4 text-white/60 hover:text-white transition-all">
+                    <span>🛡️</span> Cấu hình Bảo mật
+                </a>
+                <a href="#" class="sidebar-item flex items-center gap-4 px-6 py-4 text-white/60 hover:text-white transition-all">
+                    <span>🎨</span> Tùy chỉnh Theme
+                </a>
+                <a href="#" class="sidebar-item flex items-center gap-4 px-6 py-4 text-white/60 hover:text-white transition-all">
+                    <span>📜</span> Nhật ký (Logs)
+                </a>
+                <a href="#" class="sidebar-item flex items-center gap-4 px-6 py-4 text-white/60 hover:text-white transition-all">
+                    <span>⚙️</span> Hệ thống
+                </a>
+            </nav>
+
+            <div class="p-6 mt-auto border-t border-white/5">
+                <div class="flex items-center gap-3 p-3 glass rounded-xl">
+                    <img src="images/user.png" alt="User" class="w-8 h-8 rounded-full border border-orange-500/50">
+                    <div class="flex-1 min-w-0">
+                        <p class="text-sm font-medium truncate">nhatnam232</p>
+                        <p class="text-xs text-white/40 truncate">Admin</p>
+                    </div>
+                    <button class="text-white/40 hover:text-red-500 transition-colors">🚪</button>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="flex-1 md:ml-64 p-4 md:p-8">
+            <!-- Header -->
+            <header class="flex justify-between items-center mb-10 mt-12 md:mt-0">
+                <div>
+                    <h1 class="text-3xl font-bold mb-2">Chào mừng trở lại, Nam! 👋</h1>
+                    <p class="text-white/50">Quản lý toàn bộ hệ thống Jsecurity của bạn tại đây.</p>
+                </div>
+                <div class="flex gap-4">
+                    <button class="glass px-4 py-2 rounded-xl hover:bg-white/5 transition-all flex items-center gap-2">
+                        <span>🔔</span> <span class="hidden sm:inline">Thông báo</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
+                <div class="glass p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">🛡️</div>
+                    <p class="text-white/50 text-sm mb-1">Trạng thái Bot</p>
+                    <h3 class="text-2xl font-bold text-green-400">Đang hoạt động</h3>
+                </div>
+                <div class="glass p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">👥</div>
+                    <p class="text-white/50 text-sm mb-1">Thành viên</p>
+                    <h3 class="text-2xl font-bold">12,450</h3>
+                </div>
+                <div class="glass p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">🚫</div>
+                    <p class="text-white/50 text-sm mb-1">Đã chặn hôm nay</p>
+                    <h3 class="text-2xl font-bold text-orange-500">42 vụ</h3>
+                </div>
+                <div class="glass p-6 rounded-2xl relative overflow-hidden group">
+                    <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:scale-110 transition-transform">⚡</div>
+                    <p class="text-white/50 text-sm mb-1">Ping hệ thống</p>
+                    <h3 class="text-2xl font-bold">24ms</h3>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Security Toggles -->
+                <div class="lg:col-span-2 space-y-6">
+                    <div class="glass p-8 rounded-3xl">
+                        <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                            <span>🛡️</span> Cài đặt Bảo mật Nhanh
+                        </h2>
+                        <div class="space-y-6">
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center">🔨</div>
+                                    <div>
+                                        <h4 class="font-bold">Anti-Nuke</h4>
+                                        <p class="text-xs text-white/50">Ngăn chặn xóa kênh/role hàng loạt</p>
+                                    </div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center">🚨</div>
+                                    <div>
+                                        <h4 class="font-bold">Anti-Raid</h4>
+                                        <p class="text-xs text-white/50">Tự động khóa server khi bị tấn công</p>
+                                    </div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+
+                            <div class="flex items-center justify-between p-4 bg-white/5 rounded-2xl hover:bg-white/10 transition-all">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center">🚫</div>
+                                    <div>
+                                        <h4 class="font-bold">Anti-Spam</h4>
+                                        <p class="text-xs text-white/50">Chặn tin nhắn lặp lại và mention</p>
+                                    </div>
+                                </div>
+                                <label class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                        <button class="w-full mt-8 bg-orange-500 hover:bg-orange-600 py-4 rounded-2xl font-bold transition-all shadow-lg shadow-orange-500/20">
+                            Lưu cấu hình bảo mật
+                        </button>
+                    </div>
+
+                    <!-- Theme Settings -->
+                    <div class="glass p-8 rounded-3xl">
+                        <h2 class="text-xl font-bold mb-6 flex items-center gap-3">
+                            <span>🎨</span> Tùy chỉnh Giao diện (Theme)
+                        </h2>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                            <div class="space-y-2">
+                                <label class="text-sm text-white/50">Màu chủ đạo (Primary Color)</label>
+                                <div class="flex gap-3 p-2 glass rounded-xl">
+                                    <input type="color" value="#f97316" class="w-10 h-10 rounded-lg bg-transparent border-none cursor-pointer">
+                                    <input type="text" value="#f97316" class="bg-transparent border-none text-sm w-full outline-none">
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <label class="text-sm text-white/50">Tên hiển thị Bot</label>
+                                <div class="p-3 glass rounded-xl">
+                                    <input type="text" value="Jsecurity" class="bg-transparent border-none text-sm w-full outline-none">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Logs Sidebar -->
+                <div class="glass p-8 rounded-3xl h-fit">
+                    <div class="flex justify-between items-center mb-6">
+                        <h2 class="text-xl font-bold">📜 Nhật ký gần đây</h2>
+                        <button class="text-xs text-orange-500 hover:underline">Xem tất cả</button>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex gap-4 border-l-2 border-orange-500/30 pl-4 py-1">
+                            <div class="text-xs text-white/30 whitespace-nowrap">14:20</div>
+                            <div class="text-sm">
+                                <span class="text-orange-500 font-bold">Anti-Spam:</span> Đã timeout <span class="text-white/80">@hacker123</span> (10p)
+                            </div>
+                        </div>
+                        <div class="flex gap-4 border-l-2 border-blue-500/30 pl-4 py-1">
+                            <div class="text-xs text-white/30 whitespace-nowrap">13:55</div>
+                            <div class="text-sm">
+                                <span class="text-blue-500 font-bold">Log:</span> Tin nhắn bị xóa trong <span class="text-white/80">#chung</span>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 border-l-2 border-green-500/30 pl-4 py-1">
+                            <div class="text-xs text-white/30 whitespace-nowrap">12:30</div>
+                            <div class="text-sm">
+                                <span class="text-green-500 font-bold">System:</span> Bot đã khởi động lại thành công
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button class="md:hidden fixed bottom-6 right-6 w-14 h-14 bg-orange-500 rounded-full shadow-xl z-[60] text-2xl">
+        🍔
+    </button>
+
+    <script>
+        // Hiệu ứng GSAP đơn giản khi vào trang
+        gsap.from(".glass", {
+            opacity: 0,
+            y: 20,
+            stagger: 0.1,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+    </script>
+</body>
+</html>
