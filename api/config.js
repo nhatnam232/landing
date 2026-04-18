@@ -15,10 +15,11 @@ export default async function handler(req, res) {
   }
 
   if (req.method === 'POST') {
-    // Cập nhật config
+    // Cập nhật config (Sử dụng cấu trúc $set linh hoạt cho nested fields)
     const { update } = req.body;
     if (!guildId || !update) return res.status(400).json({ error: 'Missing data' });
     
+    // Đảm bảo update là một object phẳng (dot notation)
     await collection.updateOne(
       { guildId },
       { $set: update },
