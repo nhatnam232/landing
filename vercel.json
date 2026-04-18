@@ -3,6 +3,7 @@
   "name": "blv-guard-landing",
   "cleanUrls": true,
   "trailingSlash": false,
+  "outputDirectory": ".",
   "rewrites": [
     { "source": "/(.*)", "destination": "/$1" }
   ]
