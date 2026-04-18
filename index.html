@@ -1,0 +1,572 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BLV Guard</title>
+    <link rel="icon" type="image/x-icon" href="./images/logo.png">
+    <meta content="#f97316" data-react-helmet="true" name="theme-color" />
+    <meta
+      name="title"
+      content="BLV Guard - Bot Bảo Mật Cho Server BLV Bún Chả"
+    />
+    <meta
+      name="description"
+      content="BLV Guard là bot bảo mật toàn diện cho server Discord BLV Bún Chả, với các tính năng Anti-Raid, Anti-Nuke, Anti-Spam, Anti-Scam và hệ thống log chi tiết."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://discord.gg/blvbuncha" />
+    <meta
+      property="og:title"
+      content="BLV Guard - Bot Bảo Mật Cho Server BLV Bún Chả"
+    />
+    <meta
+      property="og:description"
+      content="BLV Guard là bot bảo mật toàn diện cho server Discord BLV Bún Chả, với các tính năng Anti-Raid, Anti-Nuke, Anti-Spam, Anti-Scam và hệ thống log chi tiết."
+    />
+    <meta property="og:image" content="./images/logo.png" />
+    <meta property="og:color" content="#f97316" />
+    <meta property="twitter:card" content="summary_large_image" />
+    <meta property="twitter:url" content="https://discord.gg/blvbuncha" />
+    <meta
+      property="twitter:title"
+      content="BLV Guard - Bot Bảo Mật Cho Server BLV Bún Chả"
+    />
+    <meta
+      property="twitter:description"
+      content="BLV Guard là bot bảo mật toàn diện cho server Discord BLV Bún Chả, với các tính năng Anti-Raid, Anti-Nuke, Anti-Spam, Anti-Scam và hệ thống log chi tiết."
+    />
+    <meta property="twitter:image" content="./images/logo.png" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/styles.css" />
+    <script src="js/script.js"></script>
+  </head>
+  <body
+    class="bg-black text-white max-h-[400px] overflow-y-auto [&::-webkit-scrollbar]:w-2 [&::-webkit-scrollbar-track]:rounded-full [&::-webkit-scrollbar-thumb]:rounded-full [&::-webkit-scrollbar-thumb]:bg-red-500"
+  >
+    <div
+      id="loader"
+      class="fixed inset-0 bg-black z-50 flex items-center justify-center"
+    >
+      <div
+        class="w-12 h-12 border-4 border-red-500 border-t-transparent rounded-full animate-spin"
+      ></div>
+    </div>
+    <nav class="fixed w-full z-50 top-0">
+      <div class="nav-blur bg-black/30 border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex items-center justify-between h-20">
+            <div class="flex items-center gap-2">
+              <img
+                src="images/logo.png"
+                alt="BLV Guard Logo"
+                class="w-10 h-10 rounded-lg"
+              />
+              <span
+                class="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600"
+                >BLV Guard</span
+              >
+            </div>
+
+            <div class="hidden md:flex gap-8">
+              <a
+                href="#hero"
+                class="text-white/70 hover:text-white transition-colors"
+                >Home</a
+              >
+              <a
+                href="#features"
+                class="text-white/70 hover:text-white transition-colors"
+                >Features</a
+              >
+              <a
+                href="#commands"
+                class="text-white/70 hover:text-white transition-colors"
+                >Commands</a
+              >
+              <a
+                href="#testimonials"
+                class="text-white/70 hover:text-white transition-colors"
+                >Testimonials</a
+              >
+            </div>
+
+            <div class="md:hidden">
+              <button onclick="toggleMobileMenu()" class="text-white p-2">
+                <svg
+                  class="w-6 h-6"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    class="menu-icon"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M4 6h16M4 12h16M4 18h16"
+                  ></path>
+                </svg>
+              </button>
+            </div>
+
+            <a href="https://discord.gg/blvbuncha" target="_blank" class="hidden md:block">
+              <button
+                class="bg-orange-500/20 hover:bg-orange-500/30 border border-orange-500/40 px-6 py-2 rounded-lg transition-all duration-300 text-orange-300"
+              >
+                Tham Gia Server
+              </button>
+            </a>
+          </div>
+
+          <div id="mobileMenu" class="hidden md:hidden">
+            <div class="px-2 pt-2 pb-3 space-y-1 bg-black/50 rounded-lg mt-2">
+              <a
+                href="#hero"
+                class="block px-3 py-2 text-white/70 hover:text-white transition-colors"
+                >Home</a
+              >
+              <a
+                href="#features"
+                class="block px-3 py-2 text-white/70 hover:text-white transition-colors"
+                >Features</a
+              >
+              <a
+                href="#commands"
+                class="block px-3 py-2 text-white/70 hover:text-white transition-colors"
+                >Commands</a
+              >
+              <a
+                href="#testimonials"
+                class="block px-3 py-2 text-white/70 hover:text-white transition-colors"
+                >Testimonials</a
+              >
+              <a
+                href="https://discord.gg/blvbuncha"
+                target="_blank"
+                class="block px-3 py-2 text-white/70 hover:text-white transition-colors"
+                >Tham Gia Server</a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <section id="hero" class="min-h-screen relative overflow-hidden">
+      <div class="absolute inset-0 gradient-bg opacity-10"></div>
+      <div
+        class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-orange-900/40 via-black to-black"
+      ></div>
+
+      <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8 text-center lg:text-left mt-16 lg:mt-0">
+            <h1 class="text-4xl md:text-6xl font-bold leading-tight">
+              Bảo Vệ Server Của Bạn
+              <span
+                class="bg-clip-text text-transparent bg-gradient-to-r from-orange-400 to-orange-600"
+                >Toàn Diện</span
+              >
+            </h1>
+            <p class="text-lg md:text-xl text-white/70">
+              BLV Guard bảo vệ server <strong>BLV Bún Chả</strong> (Thành lập 08/04/2026) khỏi Raid, Nuke, Spam và Scam
+              với hệ thống bảo mật tự động 24/7.
+            </p>
+            <div
+              class="flex flex-col gap-4 sm:flex-row sm:gap-8 justify-center lg:justify-start"
+            >
+              <a
+                href="https://discord.gg/blvbuncha"
+                target="_blank"
+                class="inline-flex items-center justify-center gradient-bg px-8 py-4 rounded-xl font-semibold hover:opacity-90 transition-opacity duration-300"
+              >
+                Tham Gia Server
+              </a>
+              <a
+                href="#commands"
+                class="inline-flex items-center justify-center bg-white/10 hover:bg-white/20 px-8 py-4 rounded-xl font-semibold transition-colors duration-300"
+              >
+                Xem Lệnh
+              </a>
+            </div>
+          </div>
+          <div class="relative">
+            <div class="lg:hidden"></div>
+            <div
+              class="lg:block hidden absolute inset-0 bg-orange-500 rounded-3xl blur-3xl opacity-20"
+            ></div>
+            <img
+              src="images/logo.png"
+              alt="Bot Dashboard"
+              class="relative rounded-3xl w-full max-w-md mx-auto sm:max-w-full md:w-auto hidden lg:block"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="features" class="py-32 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-5xl font-bold mb-4">Tính Năng Của BLV Guard</h2>
+          <p class="text-xl text-white/70">
+            Hệ thống bảo mật toàn diện, tự động bảo vệ server của bạn.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="feature-card p-8 rounded-2xl">
+            <div
+              class="w-14 h-14 gradient-bg rounded-xl mb-6 flex items-center justify-center text-2xl"
+            >
+              🛡️
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Anti-Raid & Anti-Nuke</h3>
+            <p class="text-white/70">
+              Tự động phát hiện và khóa server khi có raid. Phát hiện kẻ xóa channel/role hàng loạt và thu hồi quyền ngay lập tức.
+            </p>
+          </div>
+          <div class="feature-card p-8 rounded-2xl">
+            <div
+              class="w-14 h-14 gradient-bg rounded-xl mb-6 flex items-center justify-center text-2xl"
+            >
+              🚫
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Anti-Spam & Anti-Scam</h3>
+            <p class="text-white/70">
+              Chặn spam tin nhắn, mention hàng loạt, và link lừa đảo (Steam scam, Nitro giả...) tự động với nhiều mức xử lý.
+            </p>
+          </div>
+          <div class="feature-card p-8 rounded-2xl">
+            <div
+              class="w-14 h-14 gradient-bg rounded-xl mb-6 flex items-center justify-center text-2xl"
+            >
+              📝
+            </div>
+            <h3 class="text-2xl font-bold mb-4">Hệ Thống Log</h3>
+            <p class="text-white/70">
+              Ghi lại toàn bộ hoạt động: tin nhắn xóa/sửa, member vào/ra server, và các sự kiện bảo mật chi tiết.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="commands" class="py-32 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-5xl font-bold mb-4">Lệnh Bot</h2>
+          <p class="text-xl text-white/70">
+            Khám phá tất cả các lệnh có sẵn của BLV Guard
+          </p>
+        </div>
+        <div class="space-y-6" id="commands-container"></div>
+      </div>
+    </section>
+    <section id="testimonials" class="py-32 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-20">
+          <h2 class="text-5xl font-bold mb-4 text-white">Cộng Đồng Nói Gì</h2>
+          <p class="text-xl text-white/70">
+            BLV Guard đang bảo vệ server <strong>BLV Bún Chả</strong> mỗi ngày.
+          </p>
+        </div>
+        <div class="relative">
+          <div
+            class="flex overflow-x-auto space-x-8 pb-10 [&amp;::-webkit-scrollbar]:h-1 [&amp;::-webkit-scrollbar-thumb]:bg-red-500 [&amp;::-webkit-scrollbar-track]:rounded-full [&amp;::-webkit-scrollbar-thumb]:rounded-full"
+          >
+            <div
+              class="testimonial-card feature-card p-8 rounded-2xl min-w-[400px] max-w-[500px]"
+            >
+              <div
+                class="w-16 h-16 gradient-bg rounded-full mb-6 flex items-center justify-center text-2xl"
+              >
+                <img
+                  class="rounded-full"
+                  src="./images/user.png"
+                  alt="User 1"
+                />
+              </div>
+              <p class="text-white/70 text-lg mb-4">
+                "Bot bảo mật xịn nhất mình từng dùng! Anti-Raid hoạt động cực kỳ tốt, server không còn bị làm phiền bởi các đợt raid nữa."
+              </p>
+              <h4 class="text-xl font-bold text-white">Minh Khoa</h4>
+              <p class="text-sm text-white/70">Admin Server</p>
+            </div>
+            <div
+              class="testimonial-card feature-card p-8 rounded-2xl min-w-[400px] max-w-[500px]"
+            >
+              <div
+                class="w-16 h-16 gradient-bg rounded-full mb-6 flex items-center justify-center text-2xl"
+              >
+                <img
+                  class="rounded-full"
+                  src="./images/user.png"
+                  alt="User 2"
+                />
+              </div>
+              <p class="text-white/70 text-lg mb-4">
+                "Anti-Scam tự động xóa link lừa đảo cực nhanh. Thành viên trong server giờ an toàn hơn hẳn, không lo bị lừa Nitro giả nữa!"
+              </p>
+              <h4 class="text-xl font-bold text-white">Thuỳ Linh</h4>
+              <p class="text-sm text-white/70">Moderator</p>
+            </div>
+            <div
+              class="testimonial-card feature-card p-8 rounded-2xl min-w-[400px] max-w-[500px]"
+            >
+              <div
+                class="w-16 h-16 gradient-bg rounded-full mb-6 flex items-center justify-center text-2xl"
+              >
+                <img
+                  class="rounded-full"
+                  src="./images/user.png"
+                  alt="User 3"
+                />
+              </div>
+              <p class="text-white/70 text-lg mb-4">
+                "Hệ thống log chi tiết lắm, mình biết ngay ai xóa tin nhắn, ai sửa. Quản lý server dễ dàng hơn hẳn kể từ khi có BLV Guard."
+              </p>
+              <h4 class="text-xl font-bold text-white">Hoàng Nam</h4>
+              <p class="text-sm text-white/70">Server Owner</p>
+            </div>
+            <div
+              class="testimonial-card feature-card p-8 rounded-2xl min-w-[400px] max-w-[500px]"
+            >
+              <div
+                class="w-16 h-16 gradient-bg rounded-full mb-6 flex items-center justify-center text-2xl"
+              >
+                <img
+                  class="rounded-full"
+                  src="./images/user.png"
+                  alt="User 4"
+                />
+              </div>
+              <p class="text-white/70 text-lg mb-4">
+                "Tính năng /setup-info gửi bảng thông tin server đẹp và tiện lắm. Newbie vào là biết ngay phải làm gì, không cần hỏi đi hỏi lại."
+              </p>
+              <h4 class="text-xl font-bold text-white">Bảo Châu</h4>
+              <p class="text-sm text-white/70">Thành Viên</p>
+            </div>
+            <div
+              class="testimonial-card feature-card p-8 rounded-2xl min-w-[400px] max-w-[500px]"
+            >
+              <div
+                class="w-16 h-16 gradient-bg rounded-full mb-6 flex items-center justify-center text-2xl"
+              >
+                <img
+                  class="rounded-full"
+                  src="./images/user.png"
+                  alt="User 5"
+                />
+              </div>
+              <p class="text-white/70 text-lg mb-4">
+                "Anti-Spam hoạt động mượt mà, không bị false positive. Bot thông minh, chỉ xử lý đúng người vi phạm. Cực kỳ hài lòng!"
+              </p>
+              <h4 class="text-xl font-bold text-white">Quang Huy</h4>
+              <p class="text-sm text-white/70">Mod Cộng Đồng</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      class="bg-black min-h-screen flex flex-col items-center justify-center p-4 sm:p-8 md:p-16 lg:p-32"
+    >
+      <div class="text-center mb-20">
+        <h2 class="text-5xl font-bold mb-4 text-white">Kết Nối</h2>
+        <p class="text-xl text-white/70">
+          Tham gia và theo dõi BLV Bún Chả trên các nền tảng.
+        </p>
+      </div>
+      <div
+        class="w-full max-w-2xl flex flex-col gap-8 items-center sm:px-6 lg:px-8"
+      >
+        <div
+          class="bg-white/5 border border-white/10 rounded-2xl p-6 w-full max-w-md transition-colors feature-card"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-red-600 rounded-xl flex items-center justify-center text-2xl"
+            >
+              🎥
+            </div>
+            <div>
+              <h3 class="text-white text-xl font-bold">Kênh YouTube</h3>
+              <p class="text-white/70 text-sm">BLV Bún Chả Official</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-white/70 text-sm">
+              <div class="flex items-center gap-1">
+                <span>🎬 7.5k+ Subscribers</span>
+              </div>
+            </div>
+            <a
+              href="https://www.youtube.com/@blvbuncha11"
+              target="_blank"
+              class="bg-red-600 hover:bg-red-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+              >Xem Kênh</a
+            >
+          </div>
+        </div>
+        <div
+          class="bg-white/5 border border-white/10 rounded-2xl p-6 w-full max-w-md transition-colors feature-card"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-black rounded-xl flex items-center justify-center text-2xl"
+            >
+              📱
+            </div>
+            <div>
+              <h3 class="text-white text-xl font-bold">TikTok @blvbuncha11</h3>
+              <p class="text-white/70 text-sm">Official TikTok Profile</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-white/70 text-sm">
+              <div class="flex items-center gap-1">
+                <span>🔥 300K+ Followers</span>
+              </div>
+            </div>
+            <a
+              href="https://www.tiktok.com/@blvbuncha11"
+              target="_blank"
+              class="bg-white text-black text-sm font-medium px-4 py-2 rounded-lg transition-colors hover:bg-white/90"
+              >Theo Dõi</a
+            >
+          </div>
+        </div>
+        <div
+          class="bg-white/5 border border-white/10 rounded-2xl p-6 w-full max-w-md transition-colors feature-card"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <div
+              class="w-12 h-12 bg-[#1877F2] rounded-xl flex items-center justify-center text-2xl"
+            >
+              👥
+            </div>
+            <div>
+              <h3 class="text-white text-xl font-bold">Group Facebook</h3>
+              <p class="text-white/70 text-sm">Cộng đồng BLV Bún Chả</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-white/70 text-sm">
+              <div class="flex items-center gap-1">
+                <span>🏠 41k+ Thành viên</span>
+              </div>
+            </div>
+            <a
+              href="https://www.facebook.com/groups/blvbuncha"
+              target="_blank"
+              class="bg-[#1877F2] hover:bg-[#166fe5] text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+              >Tham Gia Group</a
+            >
+          </div>
+        </div>
+        <div
+          class="bg-white/5 border border-white/10 rounded-2xl p-6 w-full max-w-md transition-colors feature-card"
+        >
+          <div class="flex items-center gap-4 mb-6">
+            <img
+              src="images/logo.png"
+              alt="Server Icon"
+              class="w-12 h-12 rounded-xl"
+            />
+            <div>
+              <h3 class="text-white text-xl font-bold">BLV Bún Chả Community</h3>
+              <p class="text-white/70 text-sm">Official Discord Server</p>
+            </div>
+          </div>
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-4 text-white/70 text-sm">
+              <div class="flex items-center gap-2">
+                <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                <span>Server Đang Hoạt Động</span>
+              </div>
+            </div>
+            <a
+              href="https://discord.gg/blvbuncha"
+              target="_blank"
+              class="bg-[#5865F2] hover:bg-[#4752C4] text-white text-sm font-medium px-4 py-2 rounded-lg transition-colors"
+              >Tham Gia</a
+            >
+          </div>
+        </div>
+      </div>
+    </section>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-center py-16">
+        <button
+          onclick="scrollToTop()"
+          class="group bg-white/5 border border-white/10 rounded-2xl p-4 transition-all hover:border-orange-500"
+        >
+          <svg
+            class="w-6 h-6 text-white/70 group-hover:text-white transition-colors"
+            fill="none"
+            viewbox="0 0 24 24"
+            stroke="currentcolor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M5 10l7-7m0 0l7 7m-7-7v18"
+            ></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    <footer class="text-white py-16 border-t border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div>
+            <img
+              class="h-10 mb-6"
+              src="./images/logo.png"
+              alt="BLV Guard Logo"
+            />
+            <p class="text-lg text-white/70">
+              BLV Guard là bot bảo mật chính thức của server <strong>BLV Bún Chả</strong> — bảo vệ cộng đồng khỏi Raid, Nuke, Spam và Scam 24/7.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Quick Links</h4>
+            <ul class="space-y-4">
+              <li>
+                <a href="#hero" class="text-white/70 hover:text-white">Trang Chủ</a>
+              </li>
+              <li>
+                <a href="#features" class="text-white/70 hover:text-white">Tính Năng</a>
+              </li>
+              <li>
+                <a href="#commands" class="text-white/70 hover:text-white">Lệnh Bot</a>
+              </li>
+              <li>
+                <a href="#testimonials" class="text-white/70 hover:text-white">Cộng Đồng</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold mb-4">Liên Kết</h4>
+            <ul class="space-y-4">
+              <li>
+                <a href="https://discord.gg/blvbuncha" target="_blank" class="text-white/70 hover:text-white">Discord Server</a>
+              </li>
+              <li>
+                <a href="https://www.youtube.com/@blvbuncha11" target="_blank" class="text-white/70 hover:text-white">YouTube</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="mt-12 border-t border-white/20 pt-6 text-center">
+          <p class="text-sm text-white/50">
+            © 2026 BLV Guard. All rights reserved. • Server BLV Bún Chả • Không liên kết với Discord Inc.
+          </p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
